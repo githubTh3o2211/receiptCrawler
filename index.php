@@ -1,5 +1,5 @@
 <?php
-$title = "blablibblubb schubi dubbi dub";
+$title = "Rezepte Schnellsuche";
 
 echo "<!DOCTYPE html>";
 echo "<HTML>";

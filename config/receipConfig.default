@@ -2,10 +2,10 @@
 
 [db]
 host = "localhost"
-user = ""
-password = ""
-database = ""
+user = "rezepte"
+password = "9nCv7F2Wi9NCuPXN"
+database = "rezepte"
 
 [url]
-url = ""
+url = "https://verbraucher.org"
 

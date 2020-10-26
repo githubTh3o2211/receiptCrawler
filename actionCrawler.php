@@ -8,33 +8,17 @@
 define("url", "https://verbraucher.org");
 
 require_once "mysqlConnector.php";
+require_once "receiptObj.php";
 require_once "simplehtmldom/simple_html_dom.php";
 require_once "worker.php";
 
+$receipt = new receiptObj();
 $ajaxStr = $_GET["q"];
 
 
 if (!empty($ajaxStr))
 {
-
-    # SUCHEN AUF DER ÖFFENTLICHEN WEBSEITE
-    $getContant = htmlWorker::getDOM(url, $ajaxStr);
-
-    # GIBT ALLE UL ELEMENTE
-    $shtml = $getContant->find("ul");
-
-
-    foreach ($shtml as $ulKey => $ulValue)
-    {
-        $ulAttr     = $ulValue->attr["class"];
-
-        # GIB BITTE NUR DIE REZEPTE
-        if ($ulAttr != "mod-rezept-list")
-            continue;
-
-        htmlWorker::extractToInsert($ulValue);
-
-    }
+    $receipt->getStarted($ajaxStr);
 
     
     # EXAMPLE HOW TO RETURN DATA

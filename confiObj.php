@@ -20,17 +20,24 @@ class confiObj
     private $configSourceUrl;
 
 
+    /**
+     * confiObj constructor.
+     */
     public function __construct()
     {
         if(!$this->getDbConnection())
         {
             $configFile = parse_ini_file("./config/receipConfig.default", TRUE);
 
-            $configFileDbHost       = $configFile;
-            $configFileDbUser       = $configFile;
-            $configFileDbDatabase   = $configFile;
-            $configFileDbPassword   = $configFile;
-            $configFileSourceUrl    = $configFile;
+            $this->setConfigDbHost($configFile["db"]["host"]);
+            $this->setConfigDbUser($configFile["db"]["user"]);
+            $this->setConfigDbDatabase($configFile["db"]["database"]);
+            $this->setConfigDbPassword($configFile["db"]["password"]);
+
+            $this->setConfigSourceUrl($configFile["url"]["url"]);
+
+            $initDBconnect = new mysqlConnector()
+            $this->setDbConnection()
 
             $this->setIsInstalled(TRUE);
 
