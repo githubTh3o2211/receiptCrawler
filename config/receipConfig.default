@@ -1,0 +1,11 @@
+; DEFAULT CONFIG FILE
+
+[db]
+host = "localhost"
+user = ""
+password = ""
+database = ""
+
+[url]
+url = ""
+

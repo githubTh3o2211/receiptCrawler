@@ -1,0 +1,7 @@
+CREATE USER 'rezepte'@'localhost' IDENTIFIED VIA mysql_native_password USING '***';
+GRANT SELECT, INSERT, UPDATE, DELETE, FILE ON *.* TO 'rezepte'@'localhost' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;CREATE DATABASE IF NOT EXISTS `rezepte`;
+GRANT ALL PRIVILEGES ON `rezepte`.* TO 'rezepte'@'localhost';GRANT ALL PRIVILEGES ON `rezepte\_%`.* TO 'rezepte'@'localhost';
+
+CREATE TABLE `rezepte`.`forecast` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , `zutaten_id` INT(255) NOT NULL , `link` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , UNIQUE (`id`)) ENGINE = InnoDB;
+CREATE TABLE `rezepte`.`zutaten` ( `id` INT(255) NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+ALTER TABLE `forecast` ADD `time` DATE NOT NULL AFTER `link`;
