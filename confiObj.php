@@ -36,8 +36,15 @@ class confiObj
 
             $this->setConfigSourceUrl($configFile["url"]["url"]);
 
-            $initDBconnect = new mysqlConnector()
-            $this->setDbConnection()
+
+            $initDBconnect = new mysqlConnector(
+                $this->getConfigDbUser(),
+                $this->getConfigDbHost(),
+                $this->getConfigDbPassword(),
+                $this->getConfigDbDatabase()
+            );
+
+            $this->setDbConnection($initDBconnect);
 
             $this->setIsInstalled(TRUE);
 
@@ -132,5 +139,45 @@ class confiObj
     public function setDbConnection($dbConnection)
     {
         $this->dbConnection = $dbConnection;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfigDbDatabase()
+    {
+        return $this->configDbDatabase;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfigDbHost()
+    {
+        return $this->configDbHost;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfigDbPassword()
+    {
+        return $this->configDbPassword;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfigDbUser()
+    {
+        return $this->configDbUser;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfigSourceUrl()
+    {
+        return $this->configSourceUrl;
     }
 }
